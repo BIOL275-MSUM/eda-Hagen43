@@ -1,9 +1,49 @@
 ---
-title: "EDA"
-author: "Phillip Hagen"
-date: "`r Sys.Date()`"
 output: github_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+
+# install.packages("corrplot")
+library(corrplot)
+library(ggplot2)
+```
+
+```{r}
+download_data <- read_excel("data/2020 County Health Rankings North Dakota Data - v1_1 (2).xlsx", 
+                            sheet= "Ranked Measure Data", skip = 1)
+Ranked_meas_data <- transmute(
+  download_data,
+  FIPS,
+  State,
+  County,
+  Deaths,
+  FP_health = `% Fair or Poor Health`,
+  Smokers = `% Smokers`,
+  Obesity_rate = `% Adults with Obesity`,
+  Excess_Drinking = `% Excessive Drinking`,
+  Physically_Inactive = `% Physically Inactive`,
+  Unemployment = `% Unemployed`,
+  Housing_Problems = `% Severe Housing Problems`,
+  Income = `Income Ratio`,
+  Violent_Crime = `Violent Crime Rate`
+)
+
+```
+
+<img src="https://www2.mnstate.edu/uploadedImages/Content/Marketing/logos/MSUM_Signature_Vert_Color.jpg" alt="MSUM logo" width="200" style="float:right"> 
+
+## Affects of Socioeconomics on Health
+ 
+Phillip Hagen and Chris Merkord
+  
+Biosciences Department, Minnesota State University Moorhead, 1104 7th Avenue South, Moorhead, MN 56563 USA
 
 ## Abstract
 
@@ -17,11 +57,64 @@ Health Factors is a way to measure the overall health of a specific population. 
 
   For my project I needed to pull data from a source that has data on individual counties of North Dakota. I pulled this data from the county health rankings website (County Health Rankings & Roadmaps 2020). This data is free to see if you go to the website. 
   
+### Data Description
+
+  My data consists of 54 rows, each row representing a different county in North Dakota. The variables I chose to use from the data set: 
+  
+ - Percent Fair/Poor Health: Numerical Continuous 
+ - Percent Smokers: Numerical Continuous
+ - Percent Adults with Obesity: Numerical Continuous
+ - Percent Excessive Drinking: Numerical Continuous 
+ - Percent Physically Inactive: Numerical Continuous 
+ - Percent Unemployed: Numerical Continuous
+ - Percent Severe Housing Problems: Numerical Continuous
+ - Percent Income Ratio: Numerical Continuous
+ - Violent Crime Rate: Numerical Continuous.
+  
+I selected these variables because they each show the percent of the population in each county that falls under that specific variable. This allowed me to compare my variables as a population rather than specific individuals. 
+
+  
 ### Data Preparation
 
-  I was only able to download the data through excel.I had to make the data able to do so I used Rstudio version 1.3.1093 (RStudio Team 2020) which is in R version 4.0.3(R Core Team 2020) To make the data able to use I had to run two packages dplyr (Wickham et al. 2020) and readxl (Wickham and Bryan 2019). I then had to save the excel spreadsheet to a specific file to load up in my code. I then assigned a function to the term "download_data". I used the function read_excel which allowed me to download my data. I then used sheet and skip within that function to allow me to roughly select specific data. I then used the function glimpse to preview my data, and the transmute function allowed me select specific variables to view.  
+  I was only able to download the data through excel.I had to make the data able to do so I used Rstudio version 1.3.1093 (RStudio Team 2020) which is in R version 4.0.3(R Core Team 2020) To make the data able to use I had to run two packages dplyr (Wickham et al. 2020) and readxl (Wickham and Bryan 2019). I then had to save the excel spreadsheet to a specific file to load up in my code. I used the function read_excel which allowed me to download my data. I then used sheet and skip within that function to allow me to roughly select specific data. The data contained many variables I was not interested in, which I removed. The ones I kept were: FIPS, State, County, Deaths, Percent Fair/Poor Health, Percent Smokers, Percent Adults with Obesity, Percent Excessive Drinking, Percent Physically Inactive, Percent Unemployed, Percent Severe Housing Problems, Percent Income Ratio, and Percent Violent Crime Rate.   
 
 ## Results 
+
+  To create my figures I used functions: corrplot (Wei and Simko 2017) and ggplot2 (Wickham 2016).
+  
+  
+```{r Fig. 1}
+Ranked_meas_data %>%
+  filter(!is.na(County)) %>%
+  select(-FIPS,-State,-County,-Deaths) %>%
+  cor(use = "na.or.complete") %>%
+  corrplot(
+    method = "color",
+    type = "upper",
+    order = "hclust",
+    tl.col = "black",
+    tl.srt = 45,
+    addCoef.col = "black"
+  ) 
+```
+  
+```{r Fig. 2}
+ggplot(Ranked_meas_data, aes(x=Violent_Crime, y=Excess_Drinking)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = TRUE)
+```
+
+```{r Fig. 3}
+ggplot(Ranked_meas_data, aes(x = Housing_Problems, y = Smokers)) + 
+  geom_point() + 
+  geom_smooth(method = lm, se = TRUE)
+```
+
+```{r Fig. 4}
+ggplot(Ranked_meas_data, aes(x = Violent_Crime, y = FP_health)) +
+  geom_point() +
+  geom_smooth(method = lm, se = TRUE)
+```
 
 ## Dicussion 
 
@@ -42,3 +135,9 @@ R Core Team (2020). R: A language and environment for statistical
 
 University of Wisconsin Population Health Institute. County Health Rankings 2020.     Available at www.countyhealthrankings.org. Accessed 3/4/2020.
 
+Taiyun Wei and Viliam Simko (2017). R package "corrplot":
+  Visualization of a Correlation Matrix (Version 0.84). Available from
+  https://github.com/taiyun/corrplot
+  
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
+  Springer-Verlag New York, 2016.
