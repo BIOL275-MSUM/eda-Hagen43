@@ -31,9 +31,9 @@ source? For my project I test exactly that. I hypothesize that negative
 socioeconomic variables have a strong correlation to these negative
 health behaviors. To test this hypothesis I pulled county data from the
 state of North Dakota. If my hypothesis is found to be plausible this
-would allow centers of support. These centers would provide assistance
-to individuals that suffer negative socioeconomic variables to avoid
-developing negative health behaviors.
+would allow us to create centers of support. These centers would provide
+assistance to individuals that suffer negative socioeconomic variables
+to avoid developing negative health behaviors.
 
 ## Methods
 
@@ -105,6 +105,35 @@ Figure 4. shows the correlation between fair or poor health and violent
 crime. We can see the distribution is spread with little to no trend.
 
 ## Dicussion
+
+To examine my data I used a correlation plot (Wei and Simko 2017). This
+allowed me to compare the correlation of all of my variables. Seeing the
+correlation of variables allowed me to decipher which socioeconomic
+influences had a direct affect on negative health behaviors. From Figure
+1 we can see that there is correlation between Excessive
+Drinking/violent crime, smoking/housing problems, and a negative
+correlation between Fair or poor health/violent crime.
+
+In figure 2 we can see the correlation of excessive drinking and violent
+crimes across North Dakota counties. To do this I used scatter plots
+(Wickham 2016) to compare the two vaiables. The outliers are due to the
+variety of population across the counties, and violent crime being
+higher in counties with a higher population. Figure 3 we see another
+positive correlation, this time it is between smoking and housing
+problems. This was interesting to me because housing problems usually
+stem from low income areas. This tells us that the biggest smokers are
+in lower income areas. Figure 4 showed us that there was a negative
+correlation between fair and poor health and violent crimes. This could
+be due to a handful of things. However, by examining the data I believe
+that areas that report higher levels of fair or poor health stem from
+higher income areas, where violent crime is less prevalent.
+
+In conclusion we can see that socioeconomic factors have very little
+correlation between negative health behaviors, aside from a few. This
+implicates that poor health behaviors are not dependent on an
+individuals living situation, but more dependent on knowledge of the
+issue. Moving forward we should provide proper education that will
+prevent poor health behaviors.
 
 ## Literature Cited
 
