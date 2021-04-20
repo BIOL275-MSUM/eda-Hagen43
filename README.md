@@ -22,6 +22,19 @@ to be able to create support centers in the counties that need it.
 
 ## Introduction
 
+Many Americans across the country face health problems. Many of these
+issues stem from poor health habits such as smoking, excessive drinking,
+or lack of physical activity. This has caused countless deaths around
+our country. These behaviors have even been deemed a country wide
+epidemic. However, what do these poor habits stem from an outside
+source? For my project I test exactly that. I hypothesize that negative
+socioeconomic variables have a strong correlation to these negative
+health behaviors. To test this hypothesis I pulled county data from the
+state of North Dakota. If my hypothesis is found to be plausible this
+would allow centers of support. These centers would provide assistance
+to individuals that suffer negative socioeconomic variables to avoid
+developing negative health behaviors.
+
 ## Methods
 
 ### Data Acquisition
@@ -75,11 +88,21 @@ ggplot2 (Wickham 2016).
 
 ![](README_files/figure-gfm/Fig.%201-1.png)<!-- -->
 
+Figure 1. shows the correlation between all of the variables that I
+examined.
+
 ![](README_files/figure-gfm/Fig.%202-1.png)<!-- -->
 
+Figure 2. shows the correlation between Excessive Drinking and violent
+crimes. We can see a the distribution trends positively.
 ![](README_files/figure-gfm/Fig.%203-1.png)<!-- -->
 
+Figure 3. shows the correlation between smokers and housing problems. We
+can see the distrubtion trends postively.
 ![](README_files/figure-gfm/Fig.%204-1.png)<!-- -->
+
+Figure 4. shows the correlation between fair or poor health and violent
+crime. We can see the distribution is spread with little to no trend.
 
 ## Dicussion
 

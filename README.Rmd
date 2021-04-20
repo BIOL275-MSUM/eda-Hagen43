@@ -51,6 +51,9 @@ Health Factors is a way to measure the overall health of a specific population. 
 
 ## Introduction
 
+  Many Americans across the country face health problems. Many of these issues stem from poor health habits such as smoking, excessive drinking, or lack of physical activity. This has caused countless deaths around our country. These behaviors have even been deemed a country  wide epidemic. However, what do these poor habits stem from an outside source? For my project I test exactly that. I hypothesize that negative socioeconomic variables have a strong correlation to these negative health behaviors. To test this hypothesis I pulled county data from the state of North Dakota. 
+  If my hypothesis is found to be plausible this would allow centers of support. These centers would provide assistance to individuals that suffer negative socioeconomic variables to avoid developing negative health behaviors.
+  
 ## Methods
 
 ### Data Acquisition
@@ -97,24 +100,30 @@ Ranked_meas_data %>%
     addCoef.col = "black"
   ) 
 ```
+ 
+  Figure 1. shows the correlation between all of the variables that I examined. 
   
 ```{r Fig. 2}
 ggplot(Ranked_meas_data, aes(x=Violent_Crime, y=Excess_Drinking)) + 
   geom_point() +
   geom_smooth(method = lm, se = TRUE)
 ```
-
+  
+  Figure 2. shows the correlation between Excessive Drinking and violent crimes. We can see a the distribution trends positively. 
 ```{r Fig. 3}
 ggplot(Ranked_meas_data, aes(x = Housing_Problems, y = Smokers)) + 
   geom_point() + 
   geom_smooth(method = lm, se = TRUE)
 ```
-
+  
+  Figure 3. shows the correlation between smokers and housing problems. We can see the distrubtion trends postively.
 ```{r Fig. 4}
 ggplot(Ranked_meas_data, aes(x = Violent_Crime, y = FP_health)) +
   geom_point() +
   geom_smooth(method = lm, se = TRUE)
 ```
+  
+  Figure 4. shows the correlation between fair or poor health and violent crime. We can see the distribution is spread with little to no trend.
 
 ## Dicussion 
 
